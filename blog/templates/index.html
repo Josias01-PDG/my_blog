@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+    {% block content %}
+        <!-- Start my project here-->
+            <h1 class="text-center py-4">Bienvenue sur mon blog</h1>
+    <div class="container">
+        <div class="row">
+            {% for article in liste_articles %}
+            <div class="col-md-3 mb-2">
+                <div class="card h-100">
+                        {% if article.image == "http://default" %}
+                            <img src="https://picsum.photos/400/300" alt="Random placeholder" class="card-img-top">
+                        {% else %}  
+                            <a href="{% url 'detail' article.id %}">
+                                <img src="{{ article.image.url }}"  class="card-img-top" alt="{{ article.title }}" style="max-height: 360px; object-fit: cover;">
+                            </a>
+                        {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'detail' article.id %}">{{ article.title }}</a>
+                        </h5>
+                        <p class="card-text">{{ article.content|truncatewords:10 }}</p>
+                        <p class="card-text">
+                            <small class="text-muted">Publiée il y a {{ article.created_at|timesince }}</small>
+                        </p>
+                        <a href="{% url 'detail' article.id %}" class="btn btn-primary">Lire la suite</a>
+                    </div>
+                </div>
+            </div>
+                {% endfor %}
+        </div>
+    </div>
+        <!-- End my project here-->
+    {% endblock %}
+            
+
+
+
+

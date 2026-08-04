@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load static %}
+
+<footer class="custom-footer">
+  <div class="container">
+    <div class="row py-3">
+
+      <!-- Colonne 1 : Marque -->
+      <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+        <h5 class="footer-brand">✒️ The Blog</h5>
+        <p class="footer-text">
+          Des histoires, des idées et des réflexions publiées avec passion. Un espace pour explorer, apprendre et partager.
+        </p>
+       <div class="footer-socials">
+            <a href="https://x.com/tonpseudo" target="_blank" class="social-icon">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://facebook.com/tapage" target="_blank" class="social-icon">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com/tonpseudo" target="_blank" class="social-icon">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://google.com" target="_blank" class="social-icon">
+                <i class="fa-brands fa-google"></i>
+            </a>
+            <a href="https://github.com/tonpseudo" target="_blank" class="social-icon">
+                <i class="fa-brands fa-github"></i></a>
+            <a href="https://snapchat.com/add/tonpseudo" target="_blank" class="social-icon">
+                <i class="fa-brands fa-snapchat"></i>
+            </a>
+        </div>
+      </div>
+
+      <!-- Colonne 2 : Navigation -->
+      <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+        <h6 class="footer-heading">Navigation</h6>
+        <ul class="footer-links">
+          <li><a href="{% url 'home' %}">Accueil</a></li>
+          <li><a href="#">Articles</a></li>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 3 : Catégories -->
+      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <h6 class="footer-heading">Catégories</h6>
+        <ul class="footer-links">
+          <li><a href="#">Technologie</a></li>
+          <li><a href="#">Culture</a></li>
+          <li><a href="#">Voyage</a></li>
+          <li><a href="#">Lifestyle</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne 4 : Newsletter -->
+      <div class="col-lg-3 col-md-6">
+        <h6 class="footer-heading">Newsletter</h6>
+        <p class="footer-text-small">Reçois les nouveaux articles directement dans ta boîte mail.</p>
+        <form class="newsletter-form">
+          <input type="email" class="form-control" placeholder="Votre email">
+          <button type="submit" class="btn-newsletter">→</button>
+        </form>
+      </div>
+
+    </div>
+
+    <hr class="footer-divider">
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center py-3">
+      <p class="footer-copyright mb-2 mb-md-0">© 2026 The Blog. Tous droits réservés.</p>
+      <div class="footer-legal">
+        <a href="#">Confidentialité</a>
+        <span class="mx-2">·</span>
+        <a href="#">Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
