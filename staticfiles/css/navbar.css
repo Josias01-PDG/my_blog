@@ -1,0 +1,107 @@
+.custom-navbar {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+    padding: 0.2rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+  .brand-logo {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #f5f5f5 !important;
+  }
+
+  .brand-icon {
+    margin-right: 6px;
+  }
+
+  .custom-navbar .nav-link {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.75) !important;
+    padding: 0.5rem 1rem !important;
+    position: relative;
+    transition: color 0.25s ease;
+  }
+
+  .custom-navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    width: 0;
+    height: 2px;
+    background: #d4af37;
+    transition: width 0.25s ease;
+  }
+
+  .custom-navbar .nav-link:hover {
+    color: #ffffff !important;
+  }
+
+  .custom-navbar .nav-link:hover::after {
+    width: calc(100% - 2rem);
+  }
+
+  .search-form .form-control {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 0.85rem;
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    width: 200px;
+  }
+
+  .search-form .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .search-form .form-control:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #d4af37;
+    box-shadow: none;
+  }
+
+  .btn-admin {
+    background: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
+    border-radius: 20px;
+    padding: 0.35rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+  }
+
+  .btn-admin:hover {
+    background: #d4af37;
+    color: #0f0f0f;
+  }
+
+  @media (max-width: 991.98px) {
+    .custom-navbar .navbar-collapse {
+      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+      padding: 1rem 1.5rem;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+    }
+
+    .custom-navbar .search-form {
+      width: 100%;
+      margin: 1.25rem 0 1.5rem 0;
+    }
+
+    .custom-navbar .search-form .form-control {
+      width: 100%;
+    }
+
+    .custom-navbar .btn-admin {
+      display: block;
+      width: fit-content;
+      margin-top: 0;
+    }
+}
