@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+    {% block content %}
+        <h1 class="text-center py-4">Vidéos</h1>
+    <div class="container">
+        <div class="row">
+            {% for video in liste_videos %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <video class="card-img-top" controls style="max-height: 360px; object-fit: cover;"
+                        {% if video.thumbnail %}poster="{{ video.thumbnail.url }}"{% endif %}>
+                        <source src="{{ video.file.url }}" />
+                        Votre navigateur ne supporte pas la lecture vidéo.
+                    </video>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ video.title }}</h5>
+                        <p class="card-text">{{ video.description|truncatewords:10 }}</p>
+                        <p class="card-text">
+                            <small class="text-muted">Publiée il y a {{ video.created_at|timesince }}</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}

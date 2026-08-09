@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from . models import Article
+from .models import Article, Video
 
 # Create your views here.
 
@@ -22,3 +22,11 @@ def detail(request, article_id):
         'articles_en_relation': articles_en_relation
     }
     return render(request, 'detail.html', context)
+
+
+def videos(request):
+    liste_videos = Video.objects.all()
+    context = {
+        'liste_videos': liste_videos
+    }
+    return render(request, 'videos.html', context)
