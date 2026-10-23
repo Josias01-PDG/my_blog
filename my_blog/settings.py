@@ -157,3 +157,9 @@ SOCIAL_LINKS = [
 
 # Adresse de l'admin : modifiable via la variable d'environnement ADMIN_URL
 ADMIN_URL = os.environ.get('ADMIN_URL', 'admin/').strip('/') + '/'
+
+# Envoi de la newsletter (API Brevo)
+BREVO_API_KEY = os.environ.get('BREVO_API_KEY', '')
+NEWSLETTER_FROM_EMAIL = os.environ.get('NEWSLETTER_FROM_EMAIL', '')
+NEWSLETTER_FROM_NAME = os.environ.get('NEWSLETTER_FROM_NAME', 'Jo-blog')
+SITE_URL = os.environ.get('SITE_URL', 'http://127.0.0.1:8000').rstrip('/')

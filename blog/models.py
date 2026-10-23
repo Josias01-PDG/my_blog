@@ -115,3 +115,21 @@ class Subscriber(models.Model):
 
     def __str__(self):
         return self.email
+
+class Newsletter(models.Model):
+    subject = models.CharField("sujet", max_length=150)
+    content = models.TextField(
+        "contenu",
+        help_text="Les sauts de ligne sont conservés. Le HTML n'est pas interprété.",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    sent_at = models.DateTimeField("envoyée le", null=True, blank=True, editable=False)
+    sent_count = models.PositiveIntegerField("destinataires", default=0, editable=False)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = "newsletter"
+        verbose_name_plural = "newsletters"
+
+    def __str__(self):
+        return self.subject
