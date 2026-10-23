@@ -1,0 +1,23 @@
+/* Lien autour de l'image : évite l'espace blanc au-dessus */
+.article-card a.card-img-link {
+    display: block;
+}
+
+/* Même format pour toutes les images, quelle que soit la photo d'origine */
+.article-card .article-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+}
+
+/* Bouton toujours en bas de la carte */
+.article-card .card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.article-card .card-body .btn {
+    margin-top: auto;
+    align-self: flex-start;
+}

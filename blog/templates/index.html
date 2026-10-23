@@ -5,10 +5,10 @@
     <div class="container">
         <div class="row">
             {% for article in liste_articles %}
-            <div class="col-md-3 mb-2">
-                <div class="card h-100">
-                    <a href="{% url 'detail' article.id %}">
-                        <img src="{{ article.image_url }}" class="card-img-top" alt="{{ article.title }}" style="max-height: 360px; object-fit: cover;">
+            <div class="col-md-3 mb-4">
+                <div class="card h-100 article-card">
+                    <a href="{% url 'detail' article.id %}" class="card-img-link">
+                        <img src="{{ article.image_url }}" class="card-img-top article-img" alt="{{ article.title }}">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title"><a href="{% url 'detail' article.id %}">{{ article.title }}</a></h5>
