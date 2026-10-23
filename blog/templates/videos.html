@@ -7,7 +7,7 @@
             {% for video in liste_videos %}
             <div class="col-md-3 mb-4">
                 <div class="card h-100">
-                    <video class="card-img-top" controls style="max-height: 360px; object-fit: cover;"
+                    <video class="card-img-top" controls preload="metadata" style="max-height: 360px; object-fit: cover;"
                         {% if video.thumbnail %}poster="{{ video.thumbnail.url }}"{% endif %}>
                         <source src="{{ video.file.url }}" />
                         Votre navigateur ne supporte pas la lecture vidéo.

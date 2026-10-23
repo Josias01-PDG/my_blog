@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-2">{{ category.name }}</h1>
+    {% if category.description %}
+        <p class="text-center text-muted mb-5">{{ category.description }}</p>
+    {% endif %}
+
+    <div class="row">
+        {% for article in liste_articles %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                <a href="{% url 'detail' article.id %}">
+                    <img src="{{ article.image_url }}" class="card-img-top" alt="{{ article.title }}" style="max-height: 360px; object-fit: cover;">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'detail' article.id %}">{{ article.title }}</a></h5>
+                    <p class="card-text">{{ article.content|truncatewords:10 }}</p>
+                    <p class="card-text">
+                        <small class="text-muted">Publiée il y a {{ article.created_at|timesince }}</small>
+                    </p>
+                    <a href="{% url 'detail' article.id %}" class="btn btn-primary">Lire la suite</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-muted">Aucun article dans cette catégorie pour le moment.</p>
+        {% endfor %}
+    </div>
+
+    {% include '_pagination.html' %}
+</div>
+{% endblock %}

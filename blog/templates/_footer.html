@@ -6,30 +6,21 @@
     <div class="row py-3">
 
       <!-- Colonne 1 : Marque -->
-      <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-        <h5 class="footer-brand">✒️ The Blog</h5>
+      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+        <h5 class="footer-brand">✒️ Jo-Blog</h5>
         <p class="footer-text">
           Des histoires, des idées et des réflexions publiées avec passion. Un espace pour explorer, apprendre et partager.
         </p>
-       <div class="footer-socials">
-            <a href="https://x.com/tonpseudo" target="_blank" class="social-icon">
-                <i class="fa-brands fa-x-twitter"></i>
+              {% if social_links %}
+        <div class="footer-socials">
+          {% for link in social_links %}
+            <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer"
+              class="social-icon" aria-label="{{ link.name }}" title="{{ link.name }}">
+              <i class="{{ link.icon }}"></i>
             </a>
-            <a href="https://facebook.com/tapage" target="_blank" class="social-icon">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="https://instagram.com/tonpseudo" target="_blank" class="social-icon">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://google.com" target="_blank" class="social-icon">
-                <i class="fa-brands fa-google"></i>
-            </a>
-            <a href="https://github.com/tonpseudo" target="_blank" class="social-icon">
-                <i class="fa-brands fa-github"></i></a>
-            <a href="https://snapchat.com/add/tonpseudo" target="_blank" class="social-icon">
-                <i class="fa-brands fa-snapchat"></i>
-            </a>
+          {% endfor %}
         </div>
+        {% endif %}
       </div>
 
       <!-- Colonne 2 : Navigation -->
@@ -38,19 +29,20 @@
         <ul class="footer-links">
           <li><a href="{% url 'home' %}">Accueil</a></li>
           <li><a href="{% url 'videos' %}">Vidéos</a></li>
-          <li><a href="#">À propos</a></li>
-          <li><a href="#">Contact</a></li>
+            <li><a href="{% url 'about' %}">À propos</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
         </ul>
       </div>
 
       <!-- Colonne 3 : Catégories -->
-      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+      <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
         <h6 class="footer-heading">Catégories</h6>
-        <ul class="footer-links">
-          <li><a href="#">Technologie</a></li>
-          <li><a href="#">Culture</a></li>
-          <li><a href="#">Voyage</a></li>
-          <li><a href="#">Lifestyle</a></li>
+        <ul class="footer-links footer-links-2col">
+          {% for cat in footer_categories %}
+            <li><a href="{% url 'category' cat.id %}">{{ cat.name }}</a></li>
+          {% empty %}
+            <li class="footer-text-small">Aucune catégorie pour le moment</li>
+          {% endfor %}
         </ul>
       </div>
 
@@ -58,9 +50,10 @@
       <div class="col-lg-3 col-md-6">
         <h6 class="footer-heading">Newsletter</h6>
         <p class="footer-text-small">Reçois les nouveaux articles directement dans ta boîte mail.</p>
-        <form class="newsletter-form">
-          <input type="email" class="form-control" placeholder="Votre email">
-          <button type="submit" class="btn-newsletter">→</button>
+          <form class="newsletter-form" method="post" action="{% url 'subscribe' %}">
+          {% csrf_token %}
+            <input type="email" name="email" class="form-control" placeholder="Votre email" required aria-label="Votre adresse email">
+            <button type="submit" class="btn-newsletter" aria-label="S'inscrire à la newsletter">→</button>
         </form>
       </div>
 
@@ -69,11 +62,11 @@
     <hr class="footer-divider">
 
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center py-3">
-      <p class="footer-copyright mb-2 mb-md-0">© 2026 The Blog. Tous droits réservés.</p>
+      <p class="footer-copyright mb-2 mb-md-0">© 2026 Jo-blog. Tous droits réservés.</p>
       <div class="footer-legal">
-        <a href="#">Confidentialité</a>
-        <span class="mx-2">·</span>
-        <a href="#">Conditions</a>
+          <a href="{% url 'privacy' %}">Confidentialité</a>
+          <span class="mx-2">·</span>
+          <a href="{% url 'terms' %}">Conditions</a>
       </div>
     </div>
   </div>

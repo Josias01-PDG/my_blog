@@ -1,41 +1,44 @@
-<!DOCTYPE html>
-
-
 {% load static %}
 
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top shadow">
+    <div class="container">
+        <a class="navbar-brand brand-logo" href="{% url 'home' %}">
+            <span class="brand-icon">✒️</span> Jo-blog 😎
+        </a>
 
-<!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top shadow">
-        <div class="container">
-            <a class="navbar-brand brand-logo" href="{% url 'home' %}">
-                <span class="brand-icon">✒️</span> Jo-blog 😎
-            </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            {% url 'home' as home_url %}
+            {% url 'videos' as videos_url %}
+            {% url 'about' as about_url %}
+            {% url 'contact' as contact_url %}
 
-            <div class="collapse navbar-collapse" id="navMenu">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'videos' %}">Vidéos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">À propos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="{{ home_url }}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == videos_url %}active{% endif %}" href="{{ videos_url }}">Vidéos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == about_url %}active{% endif %}" href="{{ about_url }}">À propos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == contact_url %}active{% endif %}" href="{{ contact_url }}">Contact</a>
+                </li>
+            </ul>
 
-                <form class="d-flex search-form me-3" role="search">
-                    <input class="form-control" type="search" placeholder="Rechercher...">
-                </form>
+            <form class="d-flex search-form me-3" role="search" action="{% url 'search' %}" method="get">
+                <input class="form-control" type="search" name="q" placeholder="Rechercher..." value="{{ request.GET.q }}">
+            </form>
 
+            {% if user.is_staff %}
                 <a href="/admin/" class="btn btn-admin btn-sm">Admin</a>
-            </div>
+            {% endif %}
         </div>
-    </nav>
+    </div>
+</nav>

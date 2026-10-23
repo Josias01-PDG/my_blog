@@ -4,18 +4,32 @@
 {% block content %}
     <div class="container py-5">
         <div class="row justify-content-left">
-
             <div class="col-lg-9 col-md-12 mb-4 mb-lg-0">
                 <h1 class="text-center py-4">Détails de l'article</h1>
-                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid rounded mb-4" style="max-height: 500px; object-fit: cover;">
+                    <img src="{{ article.image_url }}" alt="{{ article.title }}" class="img-fluid rounded mb-4" style="max-height: 500px; object-fit: cover;">
                 <h3>{{ article.title }}</h3>
                 <p class="text-muted">Publié le {{ article.created_at|date:"d F Y" }}</p>
                 <p>{{ article.content }}</p>
+                {% if article.embed_url %}
+                        {% if article.embed_vertical %}
+                            <div class="d-flex justify-content-center mt-4">
+                                <iframe src="{{ article.embed_url }}" title="Vidéo : {{ article.title }}" width="325" height="580" style="max-width: 100%; border: 0;" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        {% else %}
+                            <div class="ratio ratio-16x9 mt-4">
+                                <iframe src="{{ article.embed_url }}" title="Vidéo : {{ article.title }}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                        {% endif %}
+                {% elif article.video_url %}
+                    <a href="{{ article.video_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary mt-4">
+                        ▶ Voir la vidéo
+                    </a>
+                {% endif %}
             </div>
 
             <div class="col-lg-3 col-md-12">
                 <h2>Articles en relation</h2>
-                <span class="badge bg-secondary mb-3">{{ article.category.name }}</span>
+                <a href="{% url 'category' article.category.id %}" class="badge bg-secondary mb-3 text-decoration-none">{{ article.category.name }}</a>
 
                 {% if articles_en_relation %}
                 <hr class="my-5">
@@ -24,7 +38,7 @@
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-12 col-md-4">
-                            <img src="{{ a.image.url }}" class="img-fluid rounded-start h-100" alt="{{ a.title }}" style="object-fit: cover;">
+                            <img src="{{ a.image_url }}" class="img-fluid rounded-start h-100" alt="{{ a.title }}" style="object-fit: cover;">
                         </div>
                         <div class="col-12 col-md-8">
                             <div class="card-body py-2">

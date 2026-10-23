@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+from django.contrib.messages import constants as message_constants
 from pathlib import Path
 import os
 
@@ -30,6 +30,7 @@ DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['.railway.app', 'localhost', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 
 # Application definition
@@ -68,6 +69,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'blog.context_processors.footer_categories',
+                'blog.context_processors.social_links',
             ],
         },
     },
@@ -105,6 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+MESSAGE_TAGS = {message_constants.ERROR: 'danger'}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
@@ -122,13 +126,31 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = Path(os.environ.get('MEDIA_ROOT', BASE_DIR / 'media'))
 MEDIA_URL = '/media/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+SOCIAL_LINKS = [
+    {"name": "X", "icon": "fa-brands fa-x-twitter", "url": "https://twitter.com/_Josias_01"},
+    {"name": "Facebook", "icon": "fa-brands fa-facebook-f", "url": "https://www.facebook.com/_Josias_01"},
+    {"name": "Instagram", "icon": "fa-brands fa-instagram", "url": "https://www.instagram.com/j._sias_"},
+    {"name": "TikTok", "icon": "fa-brands fa-tiktok", "url": "https://www.tiktok.com/j._sias_"},
+    {"name": "YouTube", "icon": "fa-brands fa-youtube", "url": "https://www.youtube.com/JosiasAMOUSSOU-t8r"},
+    {"name": "GitHub", "icon": "fa-brands fa-github", "url": "https://github.com/Josias01-PDG"},
+    {"name": "Snapchat", "icon": "fa-brands fa-snapchat", "url": "https://www.snapchat.com/add/josiasams01"},
+]

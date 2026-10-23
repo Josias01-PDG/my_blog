@@ -141,3 +141,12 @@
     .footer-legal a:hover {
         color: #d4af37;
     }
+
+.footer-links-2col {
+    columns: 2;
+    column-gap: 1.5rem;
+}
+
+.footer-links-2col li {
+    break-inside: avoid;
+}

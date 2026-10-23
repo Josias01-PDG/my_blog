@@ -1,0 +1,63 @@
+<!DOCTYPE html lang="fr">
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-4">Résultats de recherche</h1>
+
+    {% if query %}
+        <p class="text-center text-muted mb-5">
+            Recherche : « {{ query }} » ·
+            {{ resultats_articles.count }} article{{ resultats_articles.count|pluralize }} ·
+            {{ resultats_videos.count }} vidéo{{ resultats_videos.count|pluralize }}
+        </p>
+
+        <h2 class="h4 mb-3">Articles</h2>
+        <div class="row mb-5">
+            {% for article in resultats_articles %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <a href="{% url 'detail' article.id %}">
+                        {% if article.image == "http://default" %}
+                            <img src="https://picsum.photos/400/300" alt="{{ article.title }}" class="card-img-top">
+                        {% else %}
+                            <img src="{{ article.image.url }}" alt="{{ article.title }}" class="card-img-top" style="max-height: 360px; object-fit: cover;">
+                        {% endif %}
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'detail' article.id %}">{{ article.title }}</a>
+                        </h5>
+                        <p class="card-text">{{ article.content|truncatewords:10 }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-muted">Aucun article trouvé.</p>
+            {% endfor %}
+        </div>
+
+        <h2 class="h4 mb-3">Vidéos</h2>
+        <div class="row">
+            {% for video in resultats_videos %}
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <video class="card-img-top" controls style="max-height: 360px; object-fit: cover;"
+                        {% if video.thumbnail %}poster="{{ video.thumbnail.url }}"{% endif %}>
+                        <source src="{{ video.file.url }}" />
+                    </video>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ video.title }}</h5>
+                        <p class="card-text">{{ video.description|truncatewords:10 }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-muted">Aucune vidéo trouvée.</p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">Tape un mot dans la barre de recherche pour commencer.</p>
+    {% endif %}
+</div>
+{% endblock %}
