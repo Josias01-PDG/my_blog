@@ -5,7 +5,7 @@ from django.conf import settings
 from django.views.static import serve
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(settings.ADMIN_URL, admin.site.urls),
     path('', home, name='home'),
     path('article/<int:article_id>/', detail, name='detail'),
     path('videos/', videos, name='videos'),

@@ -196,3 +196,9 @@ class ErrorPagesTests(BaseTestCase):
         self.assertEqual(response.status_code, 404)
         self.assertContains(response, "Page introuvable", status_code=404)
         self.assertContains(response, "Retour à l'accueil", status_code=404)
+        
+class AdminUrlTests(TestCase):
+    def test_admin_redirige_vers_la_connexion(self):
+        response = self.client.get(reverse("admin:index"))
+        self.assertEqual(response.status_code, 302)
+        self.assertIn("login", response.url)

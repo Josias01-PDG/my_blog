@@ -154,3 +154,6 @@ SOCIAL_LINKS = [
     {"name": "GitHub", "icon": "fa-brands fa-github", "url": "https://github.com/Josias01-PDG"},
     {"name": "Snapchat", "icon": "fa-brands fa-snapchat", "url": "https://www.snapchat.com/add/josiasams01"},
 ]
+
+# Adresse de l'admin : modifiable via la variable d'environnement ADMIN_URL
+ADMIN_URL = os.environ.get('ADMIN_URL', 'admin/').strip('/') + '/'
