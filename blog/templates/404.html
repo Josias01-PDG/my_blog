@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5 text-center">
+    <p class="display-1 fw-bold text-muted mb-0">404</p>
+    <h1 class="h3 mb-3">Page introuvable</h1>
+    <p class="text-muted mb-4">
+        Cette page n'existe pas ou a été déplacée. Tu peux revenir à l'accueil,
+        ou nous écrire si tu penses qu'il s'agit d'une erreur.
+    </p>
+    <a href="{% url 'home' %}" class="btn btn-primary me-2">Retour à l'accueil</a>
+    <a href="{% url 'contact' %}" class="btn btn-outline-secondary">Nous contacter</a>
+</div>
+{% endblock %}

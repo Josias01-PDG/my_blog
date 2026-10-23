@@ -188,3 +188,11 @@ class ModelTests(TestCase):
     def test_image_par_defaut(self):
         a = Article(image="http://default")
         self.assertEqual(a.image_url, "https://picsum.photos/400/300")
+        
+        
+class ErrorPagesTests(BaseTestCase):
+    def test_page_404_personnalisee(self):
+        response = self.client.get("/cette-page-n-existe-pas/")
+        self.assertEqual(response.status_code, 404)
+        self.assertContains(response, "Page introuvable", status_code=404)
+        self.assertContains(response, "Retour à l'accueil", status_code=404)
